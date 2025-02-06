@@ -152,7 +152,7 @@
                     <div class="flex gap-3 items-center">
                         <div class="flex flex-col text-right">
                             <p class="text-sm text-[#7F8190]">Howdy</p>
-                            <p class="font-semibold">Fany Alqo</p>
+                            <p class="font-semibold">{{ $user->name }}</p>
                         </div>
                         <div class="w-[46px] h-[46px]">
                             <img src="{{ asset('images/photos/default-photo.svg') }}" alt="photo">

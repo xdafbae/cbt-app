@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class CourseController extends Controller
@@ -28,10 +29,11 @@ class CourseController extends Controller
      */
     public function create()
     {
-
+        $user = Auth::User();
         $categories = Category::all();
         return view('admin.courses.create', [
             'categories' => $categories,
+            'user' => $user,
         ]);
     }
 

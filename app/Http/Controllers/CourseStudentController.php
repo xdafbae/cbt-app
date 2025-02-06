@@ -9,6 +9,7 @@ use App\Models\CourseStudent;
 use App\Models\StudentAnswer;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Dotenv\Exception\ValidationException;
 
 class CourseStudentController extends Controller
@@ -19,6 +20,7 @@ class CourseStudentController extends Controller
     public function index(Course $course)
     {
         //
+        $user = Auth::user();
         $students = $course->students()->orderBy('id', 'DESC')->get();
         $questions = $course->questions()->orderBy('id', 'DESC')->get();
 
@@ -46,6 +48,7 @@ class CourseStudentController extends Controller
             'course' => $course,
             'questions' => $questions,
             'students' => $students,
+            'user' =>$user,
               
         ]);
     }
@@ -58,10 +61,13 @@ class CourseStudentController extends Controller
     {
         //
         $students = $course->students()->orderBy('id', 'DESC')->get();
+        $user = Auth::user();
+
 
         return view('admin.students.add_student', [
             'course' => $course,
             'students' => $students,
+            'user' => $user,
               
         ]);
     }
